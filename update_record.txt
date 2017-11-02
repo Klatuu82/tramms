@@ -1,0 +1,32 @@
+function update_customer($id, $name, $text, $bilderLink, $rangPay) 
+{
+	$verbindung = mysqli_connect("localhost", "root", "", "adWords")
+
+	$table = "t_customer";
+
+	$sql = "UPDATE $table SET name='$name', text='$text', bilderLink='$bilderLink', rangPay='$rangPay' WHERE id = '$id'";
+
+	mysqli_close($verbindung);
+}
+
+function update_social($id, $name, $preLink) 
+{
+	$verbindung = mysqli_connect("localhost", "root", "", "adWords")
+
+	$table = "t_customer";
+
+	$sql = "UPDATE $table SET name='$name', text='$text', preLink='$preLink' WHERE id = '$id'";
+
+	mysqli_close($verbindung);
+}
+
+function update_social($id, $user, $pwd, $rights) 
+{
+	$verbindung = mysqli_connect("localhost", "root", "", "adWords")
+
+	$table = "t_customer";
+
+	$sql = "UPDATE $table SET  /* $id, $user, $pwd, $rights"; */ todo
+
+	mysqli_close($verbindung);
+}
