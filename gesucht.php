@@ -21,19 +21,31 @@
 </head>
 
 <body>
-  <div class="row" style="padding:70px">
+  <div class="row" style="padding:30px">
   <div class="col s7"><div class="row">
       <form  >
           <div class="row" style="margin-right:130px">
               <div class="input-field col s12 ">
-                  <input  type="text" class="validate" value="<?php if(isset($_POST['search'])){ echo $_POST['searchtext']; }?>" style=" box-shadow: 2px 2px 7px #e0e0e0;">
+                  <i class="material-icons prefix" >search</i>
+                  <input  type="text" class="validate" placeholder="suchen" value="<?php if(isset($_POST['search'])){ echo $_POST['searchtext']; }?>" style=" box-shadow: 2px 2px 7px #e0e0e0;">
 
-                  <label ><i class="material-icons prefix">search</i></label>
+                  
               </div>
           </div>
       </form>
-  </div></div>
-        <div class="col s5 z-depth-2"  style="width:35%;margin-top:85px;padding:0px ">
+
+  </div>
+      <div >
+          <div class="card horizontal" style="width:90%">
+              <div class="card-stacked">
+                  <div class="card-content">
+                      <p>I am a very simple card. I am good at containing small bits of information.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+        <div class="col s5 z-depth-2"  style="width:40%;margin-top:50px;padding:0px">
           <!--<div class="row" style="width:90%;float:right;margin:30px;margin-top:90px">
             <div class="card">
               <div class="card-content" style="padding:20px;">
@@ -45,9 +57,11 @@
                     </div>
               </div>
             </div> -->
-            <div ></div>
+            <div >
+
+            </div>
       <div class="section" style="padding:20px">
-        <h4>bing</h4>
+        <h4>TRAMMS</h4>
       </div>
 
       <div class="section">
@@ -64,9 +78,14 @@
             </div>
       </div>
 
-      <div class="section" style="padding:20px">
-        <h5>Section 3</h5>
-        <p>Stuff</p>
+      <div class="section" style="margin-top:-40px" >
+          <ul id="nav-mobile" class="left hide-on-med-and-down" style="padding:8px;margin-left:10px">
+              <p>Andere suchten auch nach</p>
+              <li style="float: left;margin:4px;width:100px"><a href="#"><img src="logo1.png" style="width:80px;"><p style="text-align:center;">TRAMMS</p></a></li>
+              <li style="float: left;margin:4px;width:100px"><a href="#"><img src="logo1.png" style="width:80px;"><p style="text-align:center;">TRAMMS</p></a></li>
+              <li style="float: left;margin:4px;width:100px"><a href="#"><img src="logo1.png" style="width:80px;"><p style="text-align:center;">TRAMMS</p></a></li>
+
+          </ul>
       </div>
          </div>
 
