@@ -20,17 +20,18 @@
         </div></center>
     </div>
     <div class="row">
-        <form class="col s12">
+        <form method="post" action="gesucht.php" class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <input  type="text" class="validate" style="font-size: 28px;">
+                    <input  type="text" name="searchtext" class="validate" style="font-size: 28px;">
                     <label  >suchen</label>
                 </div>
             </div>
+            <center><input type="submit" name="search" value="suchen" class="waves-effect waves-light btn light-blue lighten-2"
+                           style="margin:auto;border-radius:30px;width:250px;margin: 10px;margin-left:45px;"></center>
         </form>
     </div>
-    <center><input type="submit" name="search" value="suchen" class="waves-effect waves-light btn light-blue lighten-2"
-           style="margin:auto;border-radius:30px;width:250px;margin: 10px;margin-left:45px;"></center>
+
 
 </div>
 
