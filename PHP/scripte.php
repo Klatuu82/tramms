@@ -53,9 +53,9 @@
       echo "Zeichensatzfehler";
       exit;
     }
-    $rows = mysqli_query($verbindung, $sql);
+    $result = mysqli_query($verbindung, $sql);
     
-    return $rows;
+    return $result;
   }
   /*SELECT t_customer.name 
 FROM `t_customer_adwords`, t_customer 
@@ -214,23 +214,19 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
   function get_customersocials_count_from_name($name){
 
     $sql = "SELECT t_customer_social.id_social FROM t_customer_social, t_customer WHERE t_customer_social.id_customer = t_customer.id AND t_customer.name = \"$name\"";
-    $rows = get_daten($sql);
+    $result = get_daten($sql);
     $count = 0;
-    $db_value = mysqli_fetch_assoc($rows);
-    var_dump($rows);
+    $db_value = mysqli_fetch_assoc($result);
+    //var_dump($rows);
 
-    foreach ($rows as $key => $value) {
-      $count++;
-      echo "<br>";
-      var_dump($value);
-    }
+     
 
     return $count;
   }
 
 
   //echo get_customersocials_count_from_name(get_customer_from_adword("A4"));
-  get_customersocials_count_from_name("Audi");
+  //get_customersocials_count_from_name("Audi");
 
 
   function get_customer_from_adword($adWord){
@@ -240,6 +236,17 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     
     $db_value = mysqli_fetch_assoc($rows);
     $value = $db_value['name'];
+    
+    return $value;
+  }
+  
+  function get_customerid_from_adword($adWord){
+  
+    $sql = "SELECT t_customer.id FROM t_customer, t_customer_adwords WHERE adWord = '$adWord' AND t_customer.id = t_customer_adwords.id_customer";
+    $result = get_daten($sql);
+    
+    $db_value = mysqli_fetch_assoc($result);
+    $value = $db_value['id'];
     
     return $value;
   }
@@ -267,5 +274,5 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     
     return $value;
   }
-
+  
 ?>
