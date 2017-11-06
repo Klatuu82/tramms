@@ -57,47 +57,48 @@ require("scripte.php");
           
           $db_value = mysqli_fetch_assoc($rows);
           if(!$db_value['id'] == ""){?>
-    <div class="col s5 z-depth-2"  style="width:40%;margin-top:50px;padding:0px">
-      <!--<div class="row" style="width:90%;float:right;margin:30px;margin-top:90px">
-        <div class="card">
-          <div class="card-content" style="padding:20px;">
-            Styles make the formatting job much easier
-            <span class="readmore">... <i class=" material-icons" style="font-size:11;">add</i></span>
-            <div class="message">
-              <?php echo "costomer text."; ?>
-
-            </div>
-          </div>
-        </div> -->
-      <div>
-    </div>
-    <div class="section" style="padding:20px">
-      <h4><?php echo get_customer_from_adword($searchtext); ?></h4>
-    </div>
-
-      <div class="section">
-        <div class="card horizontal" style="margin:0px">
-          <div class="card-image">
-            <img src="<?php echo get_customerpic_from_adword($searchtext); ?> ">
-          </div>
-          <div class="card-stacked">
-            <div class="card-content">
-              <p><?php echo get_customertext_from_adword($searchtext); ?></p>
-            </div>
+  <div class="col s5 z-depth-2"  style="width:40%;margin-top:50px;padding:0px">
+    <!--<div class="row" style="width:90%;float:right;margin:30px;margin-top:90px">
+      <div class="card">
+        <div class="card-content" style="padding:20px;">
+          Styles make the formatting job much easier
+          <span class="readmore">... <i class=" material-icons" style="font-size:11;">add</i></span>
+          <div class="message">
+            <?php echo "costomer text."; ?>
 
           </div>
         </div>
-      </div>
+      </div> -->
+    <div>
+  </div>
+  <div class="section" style="padding:20px">
+    <h4><?php //echo get_customer_from_adword($searchtext); ?></h4>
+  </div>
 
-      <div class="section" style="margin-top:-40px" >
-          <ul id="nav-mobile" class="left hide-on-med-and-down" style="padding:8px;margin-left:10px">
-              <?php  echo "<li style=\"float: left;margin:4px;width:100px\"><a href=\"#\"><img src=\"../src/logo1.png\" style=\"width:80px;\"><p style=\"width:80px;\">Facebook</p></a></li>"; ?>
-          
-          </ul>
+  <div class="section">
+    <div class="card horizontal" style="margin:0px">
+      <div class="card-image">
+        <img src="<?php //echo get_customerpic_from_adword($searchtext); ?> ">
       </div>
-         </div>
-
+      <div class="card-stacked">
+        <div class="card-content">
+          <p><?php //echo get_customertext_from_adword($searchtext); ?></p>
         </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="margin-top:-40px" >
+    <ul id="nav-mobile" class="left hide-on-med-and-down" style="padding:8px;margin-left:10px">
+        <?php  
+          for ($i=0; $i < get_customersocials_count_from_name(get_customer_from_adword($searchtext)); $i++) { 
+            echo "<li style=\"float: left;margin:4px;width:100px\"><a href=\"#\"><img src=\"../src/logo1.png\" style=\"width:80px;\"><p style=\"width:80px;\">Facebook</p></a></li>";
+          }
+          echo "<li style=\"float: left;margin:4px;width:100px\"><a href=\"#\"><img src=\"../src/logo1.png\" style=\"width:80px;\"><p style=\"width:80px;\">Facebook</p></a></li>"; ?>
+    
+    </ul>
+  </div>
 
 <?php }} ?>
 

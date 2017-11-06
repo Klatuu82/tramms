@@ -64,7 +64,7 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
   function delete_entries($id_arg, $table){
   
     $sql = "DELETE FROM $table WHERE id = $id_arg";
-    $rows = get_daten($sql)
+    $rows = get_daten($sql);
     
     return $rows;
   }
@@ -81,7 +81,7 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     $table = "t_customer";
     
     $sqltest = "INSERT INTO $table (name, text, pic_Link, e_Mail) VALUES ('$name', '$text', '$pic_Link', '$e_Mail')";
-    $rows = get_daten($sql)
+    $rows = get_daten($sql);
     
     return $rows;
   }
@@ -96,7 +96,7 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     $table = "t_social";
     
     $sql = "INSERT INTO $table (name, preLink) VALUES ('$name', '$preLink')";
-    $rows = get_daten($sql)
+    $rows = get_daten($sql);
     
     return $rows;
   }
@@ -178,16 +178,16 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
    *
    * Return INT  
   */
-  function combine_customer_social($id_customer, $id_social){
+  function combine_customer_social($id_customer, $id_social, $extention){
     $table = "t_customer_social";
       
-    $sql = "INSERT INTO $table (id_customer, id_social) VALUES ('$id_customer', '$id_social')";
+    $sql = "INSERT INTO $table (id_customer, id_social, extention) VALUES ('$id_customer', '$id_social', 'extention')";
     $rows = get_daten($sql);
     
     return $rows;
   }
   
-  /* Inhalt aus Spalte zurück geben
+  /* Inhalt aus Spalte zurÃ¼ck geben
    *
    * $table = Tabelle
    * $column = Spalte
@@ -204,5 +204,68 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     return $value;
   }
   
-  echo get_value("t_adword", "adWord", "21");
+  /* Gibt die Menge der Socials wieder
+   *
+   * $id von customer
+   * 
+   * Return int
+   *
+  */
+  function get_customersocials_count_from_name($name){
+
+    $sql = "SELECT t_customer_social.id_social FROM t_customer_social, t_customer WHERE t_customer_social.id_customer = t_customer.id AND t_customer.name = \"$name\"";
+    $rows = get_daten($sql);
+    $count = 0;
+    $db_value = mysqli_fetch_assoc($rows);
+    var_dump($rows);
+
+    foreach ($rows as $key => $value) {
+      $count++;
+      echo "<br>";
+      var_dump($value);
+    }
+
+    return $count;
+  }
+
+
+  //echo get_customersocials_count_from_name(get_customer_from_adword("A4"));
+  get_customersocials_count_from_name("Audi");
+
+
+  function get_customer_from_adword($adWord){
+  
+    $sql = "SELECT t_customer.name FROM t_customer, t_customer_adwords WHERE adWord = '$adWord' AND t_customer.id = t_customer_adwords.id_customer";
+    $rows = get_daten($sql);
+    
+    $db_value = mysqli_fetch_assoc($rows);
+    $value = $db_value['name'];
+    
+    return $value;
+  }
+  
+  function get_customerpic_from_adword($adWord){
+  
+    $sql = "SELECT t_customer.pic_link FROM t_customer, t_customer_adwords WHERE adWord = '$adWord' AND t_customer.id = t_customer_adwords.id_customer";
+
+    $rows = get_daten($sql);
+    
+    $db_value = mysqli_fetch_assoc($rows);
+    $value = $db_value['pic_link'];
+    
+    return $value;
+  }
+  
+  function get_customertext_from_adword($adWord){
+  
+    $sql = "SELECT t_customer.text FROM t_customer, t_customer_adwords WHERE adWord = '$adWord' AND t_customer.id = t_customer_adwords.id_customer";
+
+    $rows = get_daten($sql);
+    
+    $db_value = mysqli_fetch_assoc($rows);
+    $value = $db_value['text'];
+    
+    return $value;
+  }
+
 ?>
