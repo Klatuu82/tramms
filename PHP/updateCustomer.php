@@ -19,7 +19,7 @@
 		$result = get_daten($sql);
 	?>
 	<p>Ihre Eingabe wurde erfolgreich gespeichert.</p>
-	<p>Sie werden in 5 Sekunden automatisch weitergeleitet oder <a href="admin.php">klicken Sie hier</a></p>
+	<p>Sie werden in 7 Sekunden automatisch weitergeleitet oder <a href="admin.php">klicken Sie hier</a></p>
 	<?php header("refresh:7;admin.php");?>
 </div>
 
