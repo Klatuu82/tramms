@@ -25,15 +25,14 @@ if(isset($_SESSION['username']))
    //       createAdminWindow();
   $name = $_SESSION['username'];
   $permission = $_SESSION['permission'];
-  
   if($permission == "admin")
   {
-    echo "Willkommen ADMIN {$_SESSION['username']}<br >";
-    //header('location:admin.php');
+    //echo "Willkommen ADMIN {$_SESSION['username']}<br >";
+    header('location:admin.php');
   }else if($permission == "editor")
   {
     echo "Willkommen EDITOR {$_SESSION['username']}<br >";
-    header('location:update_maske.php');
+    header('location:customer.php');
   }
 }else if(empty($_POST['pwd']))
 {
@@ -70,7 +69,15 @@ if(isset($_SESSION['username']))
           $_SESSION['username'] = $name;
           $_SESSION['permission'] = $db_pwd['permission'];
           $_SESSION['id_customer'] = $db_pwd['id_customer'];
-          header('location:update_maske.php');
+		  if($_SESSION['permission'] == "admin")
+		  {
+		    //echo "Willkommen ADMIN {$_SESSION['username']}<br >";
+		    header('location:admin.php');
+		  }else if($_SESSION['permission'] == "editor")
+		  {
+		    echo "Willkommen EDITOR {$_SESSION['username']}<br >";
+		    header('location:customer.php');
+		  }
           exit;
     //createAdminWindow();
       
