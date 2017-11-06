@@ -22,7 +22,5 @@
 	<p>Sie werden in 7 Sekunden automatisch weitergeleitet oder <a href="admin.php">klicken Sie hier</a></p>
 	<?php header("refresh:7;admin.php");?>
 </div>
-
-
 </body>
 </html>

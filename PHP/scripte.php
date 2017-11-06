@@ -1,47 +1,8 @@
 <?php
-  //$verbindung = mysqli_connect("localhost", "root", "", "cbm") || die("Fehler beim Verbindungsaufbau");
-  /*$verbindung = mysqli_connect("localhost", "root", "", "adWords");
-  if(mysqli_connect_errno()){ 
-    echo "Fehler beim verbindungsaufbau: ".mysqli_connect_errno(); 
-    exit; 
-  };
-  if(!mysqli_set_charset($verbindung, "utf8"))
-  {
-    echo "Zeichensatzfehler";
-    exit;
-  }  
-  $keyword = "bing";
-  //Abfrage Sozials;
-  $sql1 = 'SELECT name FROM t_kunden WHERE name = "bing"';
-  $sozialabfrage = 'SELECT t_kunden.name as "Kunden Name", 
-                           t_sozial.name AS "Sozial Name" 
-                    FROM t_kunden, t_sozial, t_kunden_sozial_detail 
-                    WHERE t_kunden.name = "Twitter Inc." AND 
-                          t_kunden_sozial_detail.id_kunden = t_kunden.id AND 
-                          t_kunden_sozial_detail.id_sozial = t_sozial.id';
-  echo "<table>";
-  $sql = "SELECT name, text FROM t_kunden";
-  $rueckgabe = mysqli_query($verbindung, $sozialabfrage);
-  $name = mysqli_query($verbindung, $sql1);
-  echo "<br /><br /><br /><br /><br /><br /><br /><br /><br />";
-  while($datensatz = mysqli_fetch_assoc($name)){
-    echo $datensatz['PETER'];
-    echo " ";
-    //echo $datensatz['vorname'];
-    echo "<br />";
-  }
-  echo "<br /><br /><br /><br /><br /><br /><br /><br /><br />";
-  foreach($rueckgabe as $wert){
-    echo "<tr>";
-    foreach($wert as $data){
-      echo "<td>$data</td>";
-      
-    }
-    
-    echo "</tr><br />";
-  }
   
-  close($verbindung);*/
+  /* 
+   * Liefert das Mysqli query Objekt
+  */
   function get_daten($sql){
     $verbindung = mysqli_connect("localhost", "root", "", "adWords");
     if(mysqli_connect_errno()){ 
@@ -57,10 +18,10 @@
     
     return $result;
   }
-  /*SELECT t_customer.name 
-FROM `t_customer_adwords`, t_customer 
-WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_customer = t_customer.id*/
   
+  /* 
+   * Löscht Einträge aus der DB
+  */
   function delete_entries($id_arg, $table){
   
     $sql = "DELETE FROM $table WHERE id = $id_arg";
@@ -69,7 +30,8 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     return $rows;
   }
   
-  /* Erstellen von Kunden
+  /* 
+   * Erstellen von Kunden
    * $name = Firmenname;
    * $text = Beschreibung;
    * $pic_Link = Firmenlogo Link
@@ -86,7 +48,8 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     return $rows;
   }
   
-  /* Erstellen von Sozial
+  /*
+   * Erstellen von Sozial
    * $name = Firmenname;
    * $preLink = Link;
    *
@@ -101,7 +64,8 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     return $rows;
   }
   
-  /* Erstellen von User
+  /*
+   * Erstellen von User
    *
    * $name = Firmenname;
    * $preLink = Link;
@@ -120,7 +84,8 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     return $rows;
   }  
   
-  /* Kunden mit Adwords verbinden
+  /*
+   * Kunden mit Adwords verbinden
    * $id_customer = Kunden ID
    * $adword = Wort
    * $price = Preis f&uuml;r das Wort
@@ -130,7 +95,8 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
   */
   function set_customer_adwords($id_customer, $adWord, $price, $click_count){
     
-    /* Erstellen von AdWords (Unique)
+    /*
+     * Erstellen von AdWords (Unique)
      *
      * $adword = Wort  
      *
@@ -172,7 +138,8 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     }
   }
   
-  /* Kunden mit Sozials verbinden
+  /*
+   * Kunden mit Sozials verbinden
    * $id_customer = Kunden ID
    * $id_social = Sozial ID
    *
@@ -187,7 +154,8 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     return $rows;
   }
   
-  /* Inhalt aus Spalte zurück geben
+  /*
+   * Inhalt aus Spalte zurück geben
    *
    * $table = Tabelle
    * $column = Spalte
@@ -202,43 +170,7 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     $db_value = mysqli_fetch_assoc($rows);
     $value = $db_value[$columns];
     return $value;
-  }
-  
-  /* Gibt die Menge der Socials wieder
-   *
-   * $id von customer
-   * 
-   * Return int
-   *
-  */
-  function get_customersocials_count_from_name($name){
-
-    $sql = "SELECT t_customer_social.id_social FROM t_customer_social, t_customer WHERE t_customer_social.id_customer = t_customer.id AND t_customer.name = \"$name\"";
-    $result = get_daten($sql);
-    $count = 0;
-    $db_value = mysqli_fetch_assoc($result);
-    //var_dump($rows);
-
-     
-
-    return $count;
-  }
-
-
-  //echo get_customersocials_count_from_name(get_customer_from_adword("A4"));
-  //get_customersocials_count_from_name("Audi");
-
-
-  function get_customer_from_adword($adWord){
-  
-    $sql = "SELECT t_customer.name FROM t_customer, t_customer_adwords WHERE adWord = '$adWord' AND t_customer.id = t_customer_adwords.id_customer";
-    $rows = get_daten($sql);
-    
-    $db_value = mysqli_fetch_assoc($rows);
-    $value = $db_value['name'];
-    
-    return $value;
-  }
+  }  
   
   function get_customerid_from_adword($adWord){
   
@@ -247,6 +179,17 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     
     $db_value = mysqli_fetch_assoc($result);
     $value = $db_value['id'];
+    
+    return $value;
+  }
+
+  /*function get_customer_from_adword($adWord){
+  
+    $sql = "SELECT t_customer.name FROM t_customer, t_customer_adwords WHERE adWord = '$adWord' AND t_customer.id = t_customer_adwords.id_customer";
+    $rows = get_daten($sql);
+    
+    $db_value = mysqli_fetch_assoc($rows);
+    $value = $db_value['name'];
     
     return $value;
   }
@@ -273,6 +216,6 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     $value = $db_value['text'];
     
     return $value;
-  }
+  }*/
   
 ?>
