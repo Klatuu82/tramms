@@ -55,7 +55,7 @@
     }
     $rows = mysqli_query($verbindung, $sql);
     
-    return $rows;
+    return $rows;   
   }
   /*SELECT t_customer.name 
 FROM `t_customer_adwords`, t_customer 
@@ -180,14 +180,14 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
   */
   function combine_customer_social($id_customer, $id_social, $extention){
     $table = "t_customer_social";
-      
+	
     $sql = "INSERT INTO $table (id_customer, id_social, extention) VALUES ('$id_customer', '$id_social', 'extention')";
     $rows = get_daten($sql);
     
     return $rows;
   }
   
-  /* Inhalt aus Spalte zurück geben
+  /* Inhalt aus Spalte zurï¿½ck geben
    *
    * $table = Tabelle
    * $column = Spalte
@@ -201,33 +201,42 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
     
     $db_value = mysqli_fetch_assoc($rows);
     $value = $db_value[$columns];
+    
+    return $value;
+  }
+  function get_customer_from_adword($adWord){
+  
+    $sql = "SELECT t_customer.name FROM t_customer, t_customer_adwords WHERE adWord = '$adWord' AND t_customer.id = t_customer_adwords.id_customer";
+    $rows = get_daten($sql);
+    
+    $db_value = mysqli_fetch_assoc($rows);
+    $value = $db_value['name'];
+    
     return $value;
   }
   
-  /* Gibt die Menge der Socials wieder
-   *
-   * $id von customer
-   * 
-   * Return int
-   *
-  */
-  function get_customersocials_count_from_name($name){
+  function get_customerpic_from_adword($adWord){
+  
+    $sql = "SELECT t_customer.pic_link FROM t_customer, t_customer_adwords WHERE adWord = '$adWord' AND t_customer.id = t_customer_adwords.id_customer";
 
-    $sql = "SELECT t_customer_social.id_social FROM t_customer_social, t_customer WHERE t_customer_social.id_customer = t_customer.id AND t_customer.name = \"$name\"";
     $rows = get_daten($sql);
-    $count = 0;
+    
     $db_value = mysqli_fetch_assoc($rows);
-    var_dump($rows);
-
-    foreach ($rows as $key => $value) {
-      $count++;
-      echo "<br>";
-      var_dump($value);
-    }
-
-    return $count;
+    $value = $db_value['pic_link'];
+    
+    return $value;
   }
+  
+  function get_customertext_from_adword($adWord){
+  
+    $sql = "SELECT t_customer.text FROM t_customer, t_customer_adwords WHERE adWord = '$adWord' AND t_customer.id = t_customer_adwords.id_customer";
 
-  //echo get_customersocials_count_from_name(get_customer_from_adword("A4"));
-  get_customersocials_count_from_name("Audi");
+    $rows = get_daten($sql);
+    
+    $db_value = mysqli_fetch_assoc($rows);
+    $value = $db_value['text'];
+    
+    return $value;
+  }
+  
 ?>
