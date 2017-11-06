@@ -178,16 +178,16 @@ WHERE t_customer_adwords.adWord = "Ferienwohnung" AND t_customer_adwords.id_cust
    *
    * Return INT  
   */
-  function combine_customer_social($id_customer, $id_social){
+  function combine_customer_social($id_customer, $id_social, $extention){
     $table = "t_customer_social";
-      
-    $sql = "INSERT INTO $table (id_customer, id_social) VALUES ('$id_customer', '$id_social')";
+	
+    $sql = "INSERT INTO $table (id_customer, id_social, extention) VALUES ('$id_customer', '$id_social', 'extention')";
     $rows = get_daten($sql);
     
     return $rows;
   }
   
-  /* Inhalt aus Spalte zurück geben
+  /* Inhalt aus Spalte zurï¿½ck geben
    *
    * $table = Tabelle
    * $column = Spalte
