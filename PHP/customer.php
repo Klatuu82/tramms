@@ -21,7 +21,7 @@ ge&auml;ndert: 06.11.20017-15:00
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
-    <a class="waves-effect waves-light btn red lighten-1" style="position:fixed;right: 20px;margin:20px;border-radius:25px;" href="logout.php">logout</a>
+    <a class=" z-depth-5 waves-effect waves-light btn red lighten-1" style="position:fixed;right: 20px;margin:20px;border-radius:25px;" href="logout.php">logout</a>
       <div class="row">
         <div class="col s8" style=" margin:0px;">
           <div >
@@ -33,6 +33,7 @@ ge&auml;ndert: 06.11.20017-15:00
               </div>
             </div>
           </div>
+         <form action="createAdword.php" method="POST">
         <?php
           session_start();
           $table = "t_customer";
@@ -43,23 +44,26 @@ ge&auml;ndert: 06.11.20017-15:00
           $result = mysqli_query($verbindung,$sql_name);
           if($result != "")
           {   //Wenn der Eintrag in der Datenbank gefunden wird
-            $row = mysqli_fetch_assoc($result);
-            echo $row['name'] ?>
-            <input type="image" style="width :10%;float:right; "  name="logo" src="<?php echo $row['pic_link'] ?>" /><br />    
+              $row = mysqli_fetch_assoc($result);
+              echo $row['name'];
+              $_SESSION['pic_link']=$row['pic_link']; ?>
+           <input type="image" style="width :50%;float:right; " name="logo" src="<?php echo $row['pic_link'] ?>" /><br /> 
           <?php 
           } ?>
           <!--<ul class="collection with-header" style="width:100%; scroll;">
             <li class="collection-header">-->
               <div>
                 <div>
-                  <table style="margin:0px;padding:0px" width="100%">
-                    <thead>
-                      <tr>
+                  
+                   <table style="margin:0px;padding:0px" width="100%">
+                     <thead>
+                       <tr>
                         <th>Adword Name</th>
                         <th>Count</th>
                         <th>Preis</th>
-                        <a class="waves-effect waves-light  btn" name="adnew" style="margin-left: auto;margin-bottom: 0px;margin-top: 5px;">Neu</a>
+                        <button class="waves-effect waves-light  btn"  style="margin-left: auto;margin-bottom: 0px;margin-top: 5px;">Neu</button>
                       </tr>
+                     </form>
                     </thead>
                     <tbody>
                       <?php
@@ -82,7 +86,8 @@ ge&auml;ndert: 06.11.20017-15:00
                           while ($row = mysqli_fetch_assoc($result)) {
                           // Laufvariable i;
                           $i++; 
-                          //HTML-Tabelleneintrag mit speichern (submit) Button in jeder Zeile:?> 
+                          //HTML-Tabelleneintrag mit speichern (submit) Button in jeder Zeile:
+                          ?> 
                           <form method="POST" action="updateAdWord.php">  
                             <tr>
                               <td style="margin:0px;padding:0px">
@@ -108,7 +113,7 @@ ge&auml;ndert: 06.11.20017-15:00
                               </td>
                               <td>
                                 <input type="hidden" name="id" value="<?php echo $row['id'];?>">
-                                <button type="submit" value="speichern" class="waves-effect waves-light  btn" style="margin-left: auto;margin-bottom: 0px;margin-top: 5px;">Speichern</button>
+                                <button type="submit" name="submit" value="speichern" class="waves-effect waves-light  btn" style="margin-left: auto;margin-bottom: 0px;margin-top: 5px;">Speichern</button>
                               </td>
                             </tr>
                           </form>
