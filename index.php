@@ -5,16 +5,19 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 </head>
 
 <body >
-<form>
-  <a class="waves-effect waves-light btn light-blue lighten-1" style="float:right;margin-right:50px;border-radius:25px;">login</a>
-  <a class="waves-effect waves-light btn red lighten-1" style="float:right;margin-right:20px;border-radius:25px;">logout</a>
+<?php session_start();?>
+<form method="POST" action="./PHP/login.php">
+  <?php if(!isset($_SESSION['username'])){ ?><input type="submit" value="login" class="waves-effect waves-light btn light-blue lighten-1" name="login" style="float:right;margin-right:20px;border-radius:25px;"></a><?php }?>
+</form>
+<form method="POST" action="./PHP/logout.php">
+  <?php if(isset($_SESSION['username'])){ ?><input type="submit" value="logout" class="waves-effect waves-light btn red lighten-1" name="logout" style="float:right;margin-right:20px;border-radius:25px;"></a><?php }?>
 </form>
 <div style="width:50%;margin:auto;margin-top:50px;">
 
