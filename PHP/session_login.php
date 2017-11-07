@@ -27,11 +27,9 @@ if(isset($_SESSION['username']))
   $permission = $_SESSION['permission'];
   if($permission == "admin")
   {
-    //echo "Willkommen ADMIN {$_SESSION['username']}<br >";
     header('location:admin.php');
   }else if($permission == "editor")
   {
-    echo "Willkommen EDITOR {$_SESSION['username']}<br >";
     header('location:customer.php');
   }
 }else if(empty($_POST['pwd']))
@@ -65,10 +63,10 @@ if(isset($_SESSION['username']))
     //passwort verschluesseln und mit passwort in db vergleichen
     if(hash('sha256', $pwd) == $db_pwd['pwd']) 
     {
-          //anmeldung erfolgreich
-          $_SESSION['username'] = $name;
-          $_SESSION['permission'] = $db_pwd['permission'];
-          $_SESSION['id_customer'] = $db_pwd['id_customer'];
+      //anmeldung erfolgreich
+      $_SESSION['username'] = $name;
+      $_SESSION['permission'] = $db_pwd['permission'];
+      $_SESSION['id_customer'] = $db_pwd['id_customer'];
 		  if($_SESSION['permission'] == "admin")
 		  {
 		    //echo "Willkommen ADMIN {$_SESSION['username']}<br >";
