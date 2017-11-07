@@ -19,32 +19,32 @@
         </div>
     </div >
     <div class="row " style="margin:0px 90px 90px 90px">
-        <form >
+        <form method="post" action="confirmcustomer.php">
             <div class="col s6 z-depth-1" style="padding:30px">
                 <div  >
                     <div class="input-field">
-                      <input type="text" class="validate">
+                      <input name="customer_name" type="text" class="validate">
                       <label >Name</label>
                     </div>
                 </div>
                 <div class="input-field " >
-                    <textarea id="textarea1" class="materialize-textarea" data-length="1024" style="width:90%;max-height:75px;overflow:scroll;overflow-x: hidden;">
+                    <textarea name="text" id="textarea1" class="materialize-textarea" data-length="1024" style="width:90%;max-height:75px;overflow:scroll;overflow-x: hidden;">
                     hallo welt</textarea>
                     <label for="textarea1">Text</label>
                 </div>
                 <div >
                     <div class="input-field">
-                        <input type="text" class="validate">
+                        <input name="url" type="text" class="validate">
                         <label >Bild url</label>
                     </div>
                 </div>
                 <div>
                     <div class="input-field">
-                        <input type="email" class="validate">
+                        <input name="customer_email" type="email" class="validate">
                         <label for="email" data-error="wrong" data-success="right">Email</label>
                     </div>
                 </div>
-                <a class="waves-effect waves-light btn" style="margin:20px">button</a>
+                <button class="waves-effect waves-light btn" name="submit" style="margin:20px">button</button>
             </div>
         </form>
     </div>
