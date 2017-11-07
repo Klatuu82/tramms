@@ -20,9 +20,9 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
-  <?php 
-    session_start();
+  <?php
     require("scripte.php");
+    require("session_info.php")
 
   ?>
   <body>
