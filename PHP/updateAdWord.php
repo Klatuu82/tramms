@@ -16,7 +16,8 @@ $result = mysqli_query($verbindung,$sql_name);
 echo $sql_name;
 if($result){
     echo "<br />".$price." in ".$table." erfolgreich ge&auml;ndert.<br />";
-}                               
+}
+    header("refresh:7;customer.php");
     echo "<a href=customer.php>Zur&uuml;ck</a>";  
     
 ?>
