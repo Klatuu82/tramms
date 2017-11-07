@@ -14,10 +14,10 @@
 <body >
 <?php session_start();?>
 <form method="POST" action="./PHP/login.php">
-  <?php if(!isset($_SESSION['username'])){ ?><input type="submit" value="login" class="waves-effect waves-light btn light-blue lighten-1" name="login" style="float:right;margin-right:20px;border-radius:25px;"></a><?php }?>
+  <?php if(!isset($_SESSION['username'])){ ?><input type="submit" value="login" class="waves-effect waves-light btn light-blue lighten-1" name="login" style="float:right;margin:20px;margin-top:-30px;border-radius:25px;"></a><?php }?>
 </form>
 <form method="POST" action="./PHP/logout.php">
-  <?php if(isset($_SESSION['username'])){ ?><input type="submit" value="logout" class="waves-effect waves-light btn red lighten-1" name="logout" style="float:right;margin-right:20px;border-radius:25px;"></a><?php }?>
+  <?php if(isset($_SESSION['username'])){ ?><input type="submit" value="logout" class="waves-effect waves-light btn red lighten-1" name="logout" style="float:right;margin:20px;margin-top:-30px;border-radius:25px;"></a><?php }?>
 </form>
 <div style="width:50%;margin:auto;margin-top:50px;">
 
