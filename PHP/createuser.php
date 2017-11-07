@@ -1,12 +1,7 @@
 <html>
 	<head>
-      <?php          
-          session_start();
-          if(!isset($_SESSION['permission'])){
-            header('location:../index.php');
-          }else if(!($_SESSION['permission'] == "admin")){
-            header('location:customer.php');
-          }
+      <?php require("session_info.php"); 
+		  checkAdmin();
           require("scripte.php");?>
    		<title>NEW USER</title>
     	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
