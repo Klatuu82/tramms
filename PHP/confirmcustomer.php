@@ -1,11 +1,16 @@
 <html>
   <head>
-    <?php 
-      require("session_info.php"); 
-      require("scripte.php");?>
     <title>CONFIRM USER</title>
+    <?php require("session_info.php");
+	      require("scripte.php");	
+		  checkAdmin();?>
+	<!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
   	<div class="row">
@@ -37,8 +42,9 @@
 		  		  	$sql="INSERT INTO t_customer (name,text,pic_link,e_Mail) values('$name','$text','$url','$email')";
 		  		  	$ruckgabe = get_daten($sql);
 		  		  	echo $_POST['customer_name']."</br>".$_POST['customer_email'];
+					header("refresh:3;admin.php");
 		  		  }
-		  		  }  header("refresh:3;admin.php");
+		  		  }  
 		  		  	?>		
 		        </div>
 		      </div>

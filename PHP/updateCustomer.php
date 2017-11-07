@@ -2,7 +2,9 @@
 <html>
 <head>
 	<title>Update Customer</title>
-	<?php require("scripte.php")?>
+	<?php require("session_info.php");
+	      require("scripte.php");	
+		  checkAdmin();?>
 	<!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -13,14 +15,21 @@
 
 </head>
 <body>
-<?php session_start();?>
+
 <div>
-	<?php $sql = "UPDATE `t_customer` SET `name` = \"{$_POST['name']}\", `text` = \"{$_POST['text']}\", `pic_link` = \"{$_POST['pic_link']}\", `e_Mail` = \"{$_POST['e_Mail']}\" WHERE id = \"{$_POST['id']}\"";
-		$result = get_daten($sql);
+	<?php
+		if(isset($_POST['submit']))
+		{ 
+			$sql = "UPDATE `t_customer` SET `name` = \"{$_POST['name']}\", `text` = \"{$_POST['text']}\", `pic_link` = \"{$_POST['pic_link']}\", `e_Mail` = \"{$_POST['e_Mail']}\" WHERE id = \"{$_POST['id']}\"";
+			$result = get_daten($sql);
+			if($result)
+			{
+				echo "<p>Ihre Eingabe wurde erfolgreich gespeichert.</p>";
+				echo "<p>Sie werden in 3 Sekunden automatisch weitergeleitet oder <a href=\"admin.php\">klicken Sie hier</a></p>";
+				header("refresh:3;admin.php");
+			}
+		}
 	?>
-	<p>Ihre Eingabe wurde erfolgreich gespeichert.</p>
-	<p>Sie werden in 7 Sekunden automatisch weitergeleitet oder <a href="admin.php">klicken Sie hier</a></p>
-	<?php header("refresh:7;admin.php");?>
 </div>
 </body>
 </html>

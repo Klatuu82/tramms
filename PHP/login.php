@@ -1,7 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	  <?php 
+          require("scripte.php");
+		  require("session_info.php");?>
+        <title>Admin</title>
+        <!--Import Google Icon Font-->
+	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <!--Import materialize.css-->
+	    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	    <!--Let browser know website is optimized for mobile-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      	
+    </head>
+    <body><?php
 
-<?php
-
-session_start();
 
 function createAdminWindow() {
      
@@ -11,9 +25,10 @@ function showLoginWindow($status)
 {
              //Login-fenster:
       if($status == 1) {
-        echo "Benutzername/Passwort falsch.";
+	  		
+        echo "<H1 class=\"red-text\" style=\"text-align:center;\">Benutzername/Passwort falsch.</H1>";
         } 
-      $Vdata = file_get_contents("login.php");  
+      $Vdata = file_get_contents("login_html.php");  
       echo $Vdata;
       
 
@@ -93,3 +108,7 @@ if(isset($_SESSION['username']))
   }
 }
 ?>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </body>
+</html>

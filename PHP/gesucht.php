@@ -27,10 +27,10 @@
   ?>
   <body>
     <form method="POST" action="./logout.php">
-        <?php if(isset($_SESSION['username'])){ ?><input type="submit" value="logout" class="waves-effect waves-light btn red lighten-1" name="logout" style="position:fixed; right:0px; margin:20px; border-radius:25px;"><?php }?>
+        <?php if(isset($_SESSION['username'])){ ?><input type="submit" value="logout" class="waves-effect waves-light btn red lighten-1" name="logout" style="float:right;margin-right:20px;margin-top:20px;border-radius:25px;"><?php }?>
     </form>
     <form method="POST" action="./login.php">
-        <?php if(!isset($_SESSION['username'])){ ?><input type="submit" value="login" class="waves-effect waves-light btn light-blue lighten-1" name="login" style="float:right;margin-right:20px;border-radius:25px;"><?php }?>
+        <?php if(!isset($_SESSION['username'])){ ?><input type="submit" value="login" class="waves-effect waves-light btn light-blue lighten-1" name="login" style="float:right;margin-right:20px;margin-top:20px;border-radius:25px;"><?php }?>
     </form>
     <div class="row" style="padding:30px">
       <div class="col s7"><div class="row">

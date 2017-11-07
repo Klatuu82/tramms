@@ -15,14 +15,23 @@ ge&auml;ndert: 06.11.20017-15:00
 <!DOCTYPE html>
 <html>
   <head>
-    
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    	<?php
+		  require("scripte.php");
+		  require("session_info.php");
+		  checkEditor()?>
+    	<!--Import Google Icon Font-->
+	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <!--Import materialize.css-->
+	    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	    <!--Let browser know website is optimized for mobile-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
-    <a class="waves-effect waves-light btn red lighten-1" style="position:fixed;right: 20px;margin:20px;border-radius:25px;" href="logout.php">logout</a>
-      <div class="row">
+  	<form method="POST" action="./logout.php">
+    	<?php if(isset($_SESSION['username'])){ ?><input type="submit" value="logout" class="waves-effect waves-light btn red lighten-1" name="logout" style="position:fixed; right:0px; margin:20px; border-radius:25px;"></a><?php }?>
+	</form>
+	<div class="row">
         <div class="col s8" style=" margin:0px;">
           <div >
             <div class="card horizontal" >
@@ -33,8 +42,8 @@ ge&auml;ndert: 06.11.20017-15:00
               </div>
             </div>
           </div>
+         <form action="createAdword.php" method="POST">
         <?php
-          session_start();
           $table = "t_customer";
           $verbindung = mysqli_connect("localhost", "root", "", "adWords");
           $id_customer=$_SESSION['id_customer'];
@@ -43,23 +52,27 @@ ge&auml;ndert: 06.11.20017-15:00
           $result = mysqli_query($verbindung,$sql_name);
           if($result != "")
           {   //Wenn der Eintrag in der Datenbank gefunden wird
-            $row = mysqli_fetch_assoc($result);
-            echo $row['name'] ?>
-            <input type="image" style="width :10%;float:right; "  name="logo" src="<?php echo $row['pic_link'] ?>" /><br />    
+              $row = mysqli_fetch_assoc($result);
+			  $_SESSION['pic_link']=$row['pic_link']; ?>
+              <H3><?php echo $row['name']; ?><img style="width :25%;float:right; " name="logo" src="<?php echo $row['pic_link'] ?>" /><br /> </H3>
+              
+           	  
           <?php 
           } ?>
           <!--<ul class="collection with-header" style="width:100%; scroll;">
             <li class="collection-header">-->
               <div>
                 <div>
-                  <table style="margin:0px;padding:0px" width="100%">
-                    <thead>
-                      <tr>
+                  
+                   <table style="margin:0px;padding:0px" width="100%">
+                     <thead>
+                       <tr>
                         <th>Adword Name</th>
                         <th>Count</th>
                         <th>Preis</th>
-                        <a class="waves-effect waves-light  btn" name="adnew" style="margin-left: auto;margin-bottom: 0px;margin-top: 5px;">Neu</a>
+                        <th><button class="waves-effect waves-light  btn"  style="margin-left: auto;margin-bottom: 0px;margin-top: 5px;">Neu</button></th>
                       </tr>
+                     </form>
                     </thead>
                     <tbody>
                       <?php
@@ -82,7 +95,8 @@ ge&auml;ndert: 06.11.20017-15:00
                           while ($row = mysqli_fetch_assoc($result)) {
                           // Laufvariable i;
                           $i++; 
-                          //HTML-Tabelleneintrag mit speichern (submit) Button in jeder Zeile:?> 
+                          //HTML-Tabelleneintrag mit speichern (submit) Button in jeder Zeile:
+                          ?> 
                           <form method="POST" action="updateAdWord.php">  
                             <tr>
                               <td style="margin:0px;padding:0px">
@@ -101,14 +115,14 @@ ge&auml;ndert: 06.11.20017-15:00
                               <td>
                                 <div class="row">
                                   <div class="input-field ">
-                                    <input id="setPreis" type="number" value="<?php echo $row['price']; ?>" name="price" class="validate" style="width:90%;">
+                                    <input id="setPreis" type="number" step="any" value="<?php echo $row['price']; ?>" name="price" class="validate" style="width:90%;">
                                     <label >Preis</label>
                                   </div>
                                 </div>
                               </td>
                               <td>
                                 <input type="hidden" name="id" value="<?php echo $row['id'];?>">
-                                <button type="submit" value="speichern" class="waves-effect waves-light  btn" style="margin-left: auto;margin-bottom: 0px;margin-top: 5px;">Speichern</button>
+                                <button type="submit" name="submit" value="speichern" class="waves-effect waves-light  btn" style="margin-left: auto;margin-bottom: 0px;margin-top: 5px;">Speichern</button>
                               </td>
                             </tr>
                           </form>

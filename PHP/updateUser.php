@@ -2,7 +2,9 @@
 <html>
 <head>
 	<title>Update User</title>
-	<?php require("scripte.php")?>
+	<?php require("session_info.php");
+	      require("scripte.php");
+		  checkAdmin();?>
 	<!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -12,16 +14,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-<?php session_start();?>
 <div>
 	<?php 
-		$pwd = hash('sha256', $_POST['pwd']);
-		$sql = "UPDATE `t_user` SET `name`= \"{$_POST['name']}\" ,`pwd`= \"$pwd\" ,`permission`= \"{$_POST['permission']}\" ,`id_customer`= \"{$_POST['id_customer']}\" WHERE id = \"{$_POST['id']}\"";
-		$result = get_daten($sql);
+		if(isset($_POST['submit']))
+		{
+			$pwd = hash('sha256', $_POST['pwd']);
+			$sql = "UPDATE `t_user` SET `name`= \"{$_POST['name']}\" ,`pwd`= \"$pwd\" ,`permission`= \"{$_POST['permission']}\" ,`id_customer`= \"{$_POST['id_customer']}\" WHERE id = \"{$_POST['id']}\"";
+			$result = get_daten($sql);
+			if($result)
+			{
+				echo "<p>Ihre Eingabe wurde erfolgreich gespeichert.</p>";
+				echo "<p>Sie werden in 7 Sekunden automatisch weitergeleitet oder <a href=\"admin.php\">klicken Sie hier</a></p>";
+				header("refresh:7;admin.php");
+			}
+		}
+		
 	?>
-	<p>Ihre Eingabe wurde erfolgreich gespeichert.</p>
-	<p>Sie werden in 7 Sekunden automatisch weitergeleitet oder <a href="admin.php">klicken Sie hier</a></p>
-	<?php header("refresh:7;admin.php");?>
 </div>
 </body>
 </html>

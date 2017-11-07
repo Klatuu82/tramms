@@ -1,16 +1,17 @@
 <html>
     <head>
-        <?php          
-          session_start();
-          if(!isset($_SESSION['permission'])){
-            header('location:../index.php');
-          }else if(!($_SESSION['permission'] == "admin")){
-            header('location:customer.php');
-          }
-          require("scripte.php");?>
-        <title>NEW CUSTOMER</title>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+		<title>NEW CUSTOMER</title>
+        <?php require('scripte.php');
+        require('session_info.php'); 
+        checkAdmin();?>
+  
+        <!--Import Google Icon Font-->
+	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <!--Import materialize.css-->
+	    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	    <!--Let browser know website is optimized for mobile-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
     <div  class="row " style="margin:90px 90px 0px 90px">
@@ -28,8 +29,7 @@
                     </div>
                 </div>
                 <div class="input-field " >
-                    <textarea name="text" id="textarea1" class="materialize-textarea" data-length="1024" style="width:90%;max-height:75px;overflow:scroll;overflow-x: hidden;">
-                    hallo welt</textarea>
+                    <textarea name="text" id="textarea1" class="materialize-textarea" data-length="1024" style="width:90%;max-height:75px;overflow:scroll;overflow-x: hidden;"></textarea>
                     <label for="textarea1">Text</label>
                 </div>
                 <div >
@@ -44,9 +44,18 @@
                         <label for="email" data-error="wrong" data-success="right">Email</label>
                     </div>
                 </div>
-                <button class="waves-effect waves-light btn" name="submit" style="margin:20px">button</button>
+                <div class="row">
+			<div class="col s6">
+              <button name="submit" class="waves-effect waves-light btn" style="margin:20px">Save</button>
+			  </div>
+			  </form>
+			  <form method="POST" action="admin.php">
+			  <div class="col s6">
+			  <button name="back" class="waves-effect waves-light btn red lighten-1" style="float:right; margin:20px">Back</button>
+			  </div>
+			  </form>
             </div>
-        </form>
+            </div>
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>

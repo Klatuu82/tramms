@@ -2,12 +2,22 @@
   <html>
     <head>
   <?php require('scripte.php');
-        require('session_info.php'); ?>
+        require('session_info.php'); 
+        checkEditor();?>
   
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import Google Icon Font-->
+	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <!--Import materialize.css-->
+	    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	    <!--Let browser know website is optimized for mobile-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body>
+<body background-image:
+          url("\htdocs\src\logo1.png");
+        height: 100%;
+        outline: 1px solid;
+        width: 100%;>
  
       <div class="row">
         <div class="col s8" style=" margin:0px;">
@@ -20,7 +30,9 @@
               </div>
             </div>
           </div>
-          <a class="z-depth-5 waves-effect waves-light btn red lighten-1" style="position:fixed;right: 20px;margin:20px;border-radius:25px;" href="logout.php">logout</a>
+		  <form method="POST" action="./logout.php">
+            <?php if(isset($_SESSION['username'])){ ?><input type="submit" value="logout" class="waves-effect waves-light btn red lighten-1" name="logout" style="position:fixed; right:0px; margin:20px; border-radius:25px;"></a><?php }?>
+        </form>
 <div class="z-depth-3" style="margin:20px;width:75%">
    <div class="row">
       <form method="POST" class="col s12">
@@ -42,19 +54,19 @@
   <div class="row">
       <div class="row">
         <div class="input-field col s7">
-          <input  type="number" name="addPrice" class="validate">
+          <input  type="number" step="any" name="addPrice" class="validate">
           <label>Preis setzen</label>
         </div>
       </div>
    </div>
  </div>
- <input type="image" style="width :50%;float:right; " src="<?php echo $_SESSION['pic_link']; ?>" /><br /> 
+ <img style="width :25%;float:right; " src="<?php echo $_SESSION['pic_link']; ?>" /><br /> 
 </div>
  
   <?php 
 
 
-$id_customer=$_SESSION['id_customer'];
+$id_customer=10; //$_SESSION['id_customer'];
 
 if(isset($_POST['adnew'])){
     $adWord=$_POST['addAdwort']; 
@@ -71,10 +83,12 @@ if(isset($_POST['adnew'])){
 
   
 ?>
- <button class="waves-effect waves-light  btn" name="adnew" style="position:fixed;right: 20px;margin:20px;border-radius:25px;">speichern</button> 
+ <button class="waves-effect waves-light  btn" name="adnew" style="position:fixed;right: 0px;margin:20px;border-radius:25px;">speichern</button> 
  </form>
    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
     </body>
   </html>
+  
+  

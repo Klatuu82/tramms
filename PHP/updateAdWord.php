@@ -3,7 +3,8 @@
 	<head>
 		<title>Update Adwords</title>
 		<?php require("session_info.php");
-		      require("scripte.php")?>
+		      require("scripte.php");
+			  checkEditor();?>
 		<!--Import Google Icon Font-->
 	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	    <!--Import materialize.css-->
@@ -34,12 +35,10 @@
 				if($result){
 				    echo "<br />".$price." in ".$table." erfolgreich ge&auml;ndert.<br />";
 				}
-				    header("refresh:7;customer.php");
+				    header("refresh:3;customer.php");
 				    echo "<a href=customer.php>Zur&uuml;ck</a>";
-			}  
-			    
-			?>
+			}
+			header("refresh:4;login.php")?>
 		</form>
-
 	</body>
 </html>
