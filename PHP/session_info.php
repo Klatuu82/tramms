@@ -1,29 +1,25 @@
 <?php 
   session_start();
 
-  function showLoginWindow($status) 
+  $permission = "";
+
+  if(isset($_SESSION['permission']))
   {
-               //Login-fenster:
-        if($status == 1) {
-          echo "Benutzername/Passwort falsch.";
-          } 
-        header('location:../index.php');  
+    $permission = $_SESSION['permission'];
   }
 
-  if(isset($_SESSION['username'])) 
-  {
-     //       createAdminWindow();
-    $name = $_SESSION['username'];
-    $permission = $_SESSION['permission'];
-    if($permission == "admin" && !$_SERVER['SERVER_NAME'] == "admin.php")
+  function checkEditor(){
+    if($permission != "editor")
     {
-      header('location:admin.php');
-    }else if($permission == "editor" && !$_SERVER['SERVER_NAME'] == "customer.php")
-    {
-      header('location:customer.php');
+      header('location:../login.php');
     }
-  }else
-  {
-    showLoginWindow(0);      
   }
+
+  function checkAdmin(){
+    if($permission != "admin")
+    {
+      header('location:../login.php');
+    }
+  }
+  
 ?>
