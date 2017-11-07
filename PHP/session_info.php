@@ -9,16 +9,17 @@
   }
 
   function checkEditor(){
-    if($permission != "editor")
+  	
+    if($GLOBALS['permission'] != "editor")
     {
-      header('location:../login.php');
+	  header('location:../php/login.php');
     }
   }
 
   function checkAdmin(){
-    if($permission != "admin")
+    if($GLOBALS['permission'] != "admin")
     {
-      header('location:../login.php');
+      header('location:../php/login.php');
     }
   }
   
