@@ -30,16 +30,15 @@
 		  		  	header("refresh:2;createcustomer.php");
 		  		  }else{
 
-		  		  	$name=hash('sha256',$_POST['customer_name']);
+		  		  	$name=$_POST['customer_name'];
 		  		  	$text=$_POST['text'];
 		  		  	$url=$_POST['url'];
 		  		  	$email=$_POST['customer_email'];
-		  		  	$sql="INSERT INTO t_user (name,pwd,permission,id_customer) values('$name','$text','$url','$email')";
+		  		  	$sql="INSERT INTO t_customer (name,text,pic_link,e_Mail) values('$name','$text','$url','$email')";
 		  		  	$ruckgabe = get_daten($sql);
-
 		  		  	echo $_POST['customer_name']."</br>".$_POST['customer_email'];
 		  		  }
-		  		  }  header("refresh:2;admin.php");
+		  		  }  header("refresh:3;admin.php");
 		  		  	?>		
 		        </div>
 		      </div>
