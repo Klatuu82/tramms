@@ -204,6 +204,84 @@
                 </ul>
             </div>
         </div>
+		
+		<div class="row">
+            <div class="col s10" style=" margin:0px;margin-top:px">
+      	        <form method="POST" action="createSocial.php">	
+                 	  <div >
+                        <div class="card horizontal" >
+                            <div class="card-stacked" >
+                                <div class="card-content" style="display:block; padding:15px; font-size:24px">
+                                Socials<button class="waves-effect waves-light btn" style="float:right; margin-left:auto; margin-bottom: 0px;margin-top: 5px;">
+                                Create New</button>
+                          	    </div>
+                            </div>
+                        </div>
+                    </div>
+      		      </form>
+                <ul class="collapsible" data-collapsible="accordion" style="width:100%;height:400px;overflow: scroll;">
+      		      <?php $sql = "SELECT t_social.id, t_social.name, t_social.preLink, t_social.Bild FROM t_social";
+      			      $result = get_daten($sql);
+      			      $count = mysqli_num_rows($result);
+      			  
+      			      for($i = 0; $i < $count; $i++){ 
+      			  	  $daten = mysqli_fetch_assoc($result);?>
+                    <li >
+                        <div class="collapsible-header" style="padding-bottom:5px;padding-top:5px;">
+                            <div class="bilder" style="background-image: url('<?php echo $daten['Bild']; ?>');"></div>
+                                <p style="margin:10px 0px 0px 15px"><?php echo $daten['name']; ?></p>
+                        </div>
+                        <div class="collapsible-body">
+                            <span>
+                                <form method="POST" action="updateSocial.php">
+                                    <table style="margin:0px;padding:0px">
+                                        <thead>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>Name</th>
+                                                <th>preLink</th>
+                                                <th>Bild</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="margin:0px;padding:0px">
+                                                    <div class="input-field " style="margin:0px;">
+                                                        <b><input  type="text" name="id" class="validate" style="width:90%;" value="<?php echo $daten['id']; ?>"></b>
+                                                    </div>
+                                                </td>
+                                                <td style="margin:0px;padding:0px">
+                                                    <div class="input-field " style="margin:0px;">
+                                                        <b><input  type="text" name="name" class="validate" style="width:90%;" value="<?php echo $daten['name']; ?>"></b>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="input-field " >
+                                                        <b><input  type="text" name="preLink" class="validate" style="width:90%;" value="<?php echo $daten['preLink']; ?>"><b>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="input-field ">
+                                                            <b><input  type="text" name="Bild" class="validate" style="width:90%;" value="<?php echo $daten['Bild']; ?>"></b>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button type="submit" name="submit" value="save" class="waves-effect waves-light btn" style="margin-left: auto;margin-bottom: 0px;margin-top: 5px;">Save
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </form>
+                            </span>
+                        </div>
+                    </li>
+                <?php } ?>
+                </ul>
+            </div>
+        </div>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     </body>

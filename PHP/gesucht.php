@@ -20,9 +20,9 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
-  <?php
+  <?php 
+    session_start();
     require("scripte.php");
-    require("session_info.php")
 
   ?>
   <body>
@@ -49,7 +49,7 @@
         <div class="card horizontal" style="width:90%">
           <div class="card-stacked">
             <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.</p>
+				<?php if(strtolower($_POST['searchtext']) == "q7") { echo "<img src=\"../src/Q7suche.png\"></src>"; }else if(strtolower($_POST['searchtext']) == "i7"){ echo "<img src=\"../src/i7suche.png\"></src>"; }else{ echo "<img src=\"../src/keinergebnissuche.png\"></src>"; } ?>
             </div>
           </div>
         </div>
@@ -66,7 +66,7 @@
         if(!$row['id'] == "")
         {
     ?>
-    <div class="col s5 z-depth-2"  style="width:40%;margin-top:50px;padding:0px">
+    <div class="col s5 z-depth-2" style="width:40%;margin-top:50px;padding:0px">
       <div>
         <?php
           $sql = "SELECT t_customer.id, t_customer.name, t_customer.text, t_customer.pic_link   FROM t_customer, t_customer_adwords WHERE adWord = '$searchtext' AND t_customer.id = t_customer_adwords.id_customer";
@@ -95,13 +95,15 @@
       <div class="section" style="margin-top:-40px" >
         <ul id="nav-mobile" class="left hide-on-med-and-down" style="padding:8px;margin-left:10px">
           <?php  
-  		      $sql = "SELECT t_social.preLink, t_customer_social.extention, t_social.Bild, t_social.name FROM `t_social`, t_customer_social WHERE t_customer_social.id_customer = ".get_customerid_from_adword($searchtext)." AND t_customer_social.id_social = t_social.id";
+  		      $sql = "SELECT t_social.preLink, t_customer_social.extention, t_social.Bild, t_social.name, t_customer_social.activ FROM `t_social`, t_customer_social WHERE t_customer_social.id_customer = ".get_customerid_from_adword($searchtext)." AND t_customer_social.id_social = t_social.id";
   		      $result = get_daten($sql);
             for ($i=0; $i < mysqli_num_rows($result); $i++)
             { 
               $row = mysqli_fetch_assoc($result);
-              echo "<li style=\"float: left;margin:4px;width:100px\"><a href=".$row['preLink'].$row['extention']." target=\"_blank\"><img src=".$row['Bild']." style=\"width:80px;\"><p style=\"width:80px;\">".$row['name']."</p></a></li>";
-            } 
+			  if($row['activ']==1){
+              	echo "<li style=\"float: left;margin:4px;width:100px\"><a href=".$row['preLink'].$row['extention']." target=\"_blank\"><img src=".$row['Bild']." style=\"width:80px;\"><p style=\"width:80px;\">".$row['name']."</p></a></li>";
+              }
+			} 
           ?>
       	
         </ul>
