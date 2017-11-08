@@ -121,42 +121,42 @@ INSERT INTO `t_customer_adwords` (`id`, `id_customer`, `adWord`, `price`, `click
 CREATE TABLE `t_customer_social` (
   `id_customer` int(11) NOT NULL,
   `id_social` int(11) NOT NULL,
-  `extention` varchar(50) NOT NULL
+  `extention` varchar(50) NOT NULL,
+  `activ` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `t_customer_social`
 --
 
-INSERT INTO `t_customer_social` (`id_customer`, `id_social`, `extention`) VALUES
-(2, 1, 'TwitterInc/'),
-(2, 3, 'Twitter'),
-(2, 4, 'https://twitter.com/'),
-(2, 5, 'twitter?lang=de'),
-(8, 1, 'Facebook/'),
-(8, 3, 'Facebook'),
-(8, 4, 'https://facebook.de'),
-(8, 5, 'facebook?lang=de'),
-(9, 1, 'Google/'),
-(9, 3, 'Google'),
-(9, 4, 'https://google.de'),
-(9, 5, 'Google?lang=de'),
-(10, 1, 'AudiDE/'),
-(10, 3, 'Audi'),
-(10, 4, 'https://audi.de'),
-(10, 5, 'audi?lang=de'),
-(11, 1, 'BMWDeutschland/'),
-(11, 3, 'BMW'),
-(11, 4, 'http://www.bmw.de'),
-(11, 5, 'bmw?lang=de'),
-(12, 1, 'Intel/'),
-(12, 3, 'Intel'),
-(12, 4, 'http://www.intel.de'),
-(12, 5, 'intel?lang=de'),
-(13, 1, 'Puma/'),
-(13, 3, 'Puma'),
-(13, 4, 'http://eu.puma.com'),
-(13, 5, 'puma?lang=de');
+INSERT INTO `t_customer_social` (`id_customer`, `id_social`, `extention`, `activ`) VALUES
+(2, 1, 'TwitterInc/', 0),
+(2, 3, 'Twitter', 0),
+(2, 4, 'https://www.twitter.com/', 0),
+(2, 5, 'twitter?lang=de', 0),
+(8, 1, 'Facebook/', 0),
+(8, 3, 'Facebook', 0),
+(8, 4, 'https://www.facebook.de', 0),
+(8, 5, 'facebook?lang=de', 0),
+(9, 1, 'Google/', 0),
+(9, 3, 'Google', 0),
+(9, 4, 'https://www.google.de', 0),
+(9, 5, 'Google?lang=de', 0),
+(10, 1, 'AudiDE/', 0),
+(10, 3, 'Audi', 0),
+(10, 4, 'https://www.audi.de', 0),
+(10, 5, 'audi?lang=de', 0),
+(11, 1, 'BMWDeutschland/', 0),
+(11, 3, 'BMW', 0),
+(11, 4, 'http://www.bmw.de', 0),
+(11, 5, 'bmw?lang=de', 0),
+(12, 1, 'Intel/', 0),
+(12, 3, 'Intel', 0),
+(12, 4, 'http://www.intel.de', 0),
+(12, 5, 'intel?lang=de', 0),
+(13, 1, 'Puma/', 0),
+(13, 4, 'http://eu.puma.com', 0),
+(13, 5, 'puma?lang=de', 0);
 
 -- --------------------------------------------------------
 
