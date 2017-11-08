@@ -28,61 +28,7 @@
     $rows = get_daten($sql);
     
     return $rows;
-  }
-  
-  /* 
-   * Erstellen von Kunden
-   * $name = Firmenname;
-   * $text = Beschreibung;
-   * $pic_Link = Firmenlogo Link
-   * $e-Mail = E-Mail Adresse
-   *
-   * Return INT  
-  */
-  function create_customer($name, $text, $pic_Link, $e_Mail){
-    $table = "t_customer";
-    
-    $sqltest = "INSERT INTO $table (name, text, pic_Link, e_Mail) VALUES ('$name', '$text', '$pic_Link', '$e_Mail')";
-    $rows = get_daten($sql);
-    
-    return $rows;
-  }
-  
-  /*
-   * Erstellen von Sozial
-   * $name = Firmenname;
-   * $preLink = Link;
-   *
-   * Return INT  
-  */
-  function create_social($name, $preLink){
-    $table = "t_social";
-    
-    $sql = "INSERT INTO $table (name, preLink) VALUES ('$name', '$preLink')";
-    $rows = get_daten($sql);
-    
-    return $rows;
-  }
-  
-  /*
-   * Erstellen von User
-   *
-   * $name = Firmenname;
-   * $preLink = Link;
-   * $pwd = passwordhash
-   * $permission = Rechte
-   * $id_customer = Kunden ID   
-   *
-   * Return INT  
-  */
-  function create_user($name, $pwd, $permission, $id_customer){
-    $table = "t_user";
-        
-    $sql = "INSERT INTO $table (name, pwd, permission, id_customer) VALUES ('$name', '$pwd', '$permission', '$id_customer')";
-    $rows = get_daten($sql);
-    
-    return $rows;
-  }  
+  }    
   
   /*
    * Kunden mit Adwords verbinden
@@ -137,23 +83,7 @@
       return false;
     }
   }
-  
-  /*
-   * Kunden mit Sozials verbinden
-   * $id_customer = Kunden ID
-   * $id_social = Sozial ID
-   *
-   * Return INT  
-  */
-  function combine_customer_social($id_customer, $id_social, $extention){
-    $table = "t_customer_social";
-      
-    $sql = "INSERT INTO $table (id_customer, id_social, extention) VALUES ('$id_customer', '$id_social', 'extention')";
-    $rows = get_daten($sql);
     
-    return $rows;
-  }
-  
   /*
    * Inhalt aus Spalte zurück geben
    *
@@ -182,40 +112,5 @@
     
     return $value;
   }
-
-  /*function get_customer_from_adword($adWord){
-  
-    $sql = "SELECT t_customer.name FROM t_customer, t_customer_adwords WHERE adWord = '$adWord' AND t_customer.id = t_customer_adwords.id_customer";
-    $rows = get_daten($sql);
-    
-    $db_value = mysqli_fetch_assoc($rows);
-    $value = $db_value['name'];
-    
-    return $value;
-  }
-  
-  function get_customerpic_from_adword($adWord){
-  
-    $sql = "SELECT t_customer.pic_link FROM t_customer, t_customer_adwords WHERE adWord = '$adWord' AND t_customer.id = t_customer_adwords.id_customer";
-
-    $rows = get_daten($sql);
-    
-    $db_value = mysqli_fetch_assoc($rows);
-    $value = $db_value['pic_link'];
-    
-    return $value;
-  }
-  
-  function get_customertext_from_adword($adWord){
-  
-    $sql = "SELECT t_customer.text FROM t_customer, t_customer_adwords WHERE adWord = '$adWord' AND t_customer.id = t_customer_adwords.id_customer";
-
-    $rows = get_daten($sql);
-    
-    $db_value = mysqli_fetch_assoc($rows);
-    $value = $db_value['text'];
-    
-    return $value;
-  }*/
   
 ?>
