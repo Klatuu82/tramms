@@ -48,7 +48,7 @@
 
               <div class="input-field">
               <input name="id_customer" type="number" >
-              <label ></label>
+              <label >Customer ID</label>
             </div>
 			<div class="row">
 			<div class="col s6">
