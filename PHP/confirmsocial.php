@@ -37,6 +37,21 @@
 			  		  	$Bild=$_POST['Bild'];
 			  		  	$sql="INSERT INTO t_social (name,preLink,Bild) values('$name','$preLink','$Bild')";
 			  		  	$ruckgabe = get_daten($sql);
+						
+						$sql = "SELECT id FROM t_social WHERE name = '$name'";
+						$result = get_daten($sql);
+						$daten = mysqli_fetch_assoc($result);
+						
+						$id_social = $daten['id'];
+						
+						$sql = "SELECT id FROM t_customer";
+						$result = get_daten($sql);
+						$count = mysqli_num_rows($result);
+						for($i = 0; $i < $count ;$i++){
+							$daten = mysqli_fetch_assoc($result);
+							$sql = "INSERT INTO t_customer_social (id_customer, id_social, extention, activ) VALUES (\"{$daten['id']}\", \"{$id_social}\", \"\", 0)";
+							$result_write = get_daten($sql);			
+						}
 			  		  	echo $_POST['name'];
 						header("location:admin.php");
 		  		  	}
